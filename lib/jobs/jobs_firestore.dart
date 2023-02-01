@@ -45,6 +45,7 @@ class JobsFirestore implements JobsRepository {
   }
 
 
+  @override
   Future<List<AppProfile>> getProfilesInstruments(String userId) async {
 
     List<AppProfile> profiles = await ProfileFirestore().retrieveProfiles(userId);
@@ -54,7 +55,7 @@ class JobsFirestore implements JobsRepository {
 
       profile.genres = await GenreFirestore().retrieveGenres(profile.id);
 
-      if(profile.type == ProfileType.musician) {
+      if(profile.type == ProfileType.instrumentist) {
         profile.instruments = await InstrumentFirestore().retrieveInstruments(profile.id);
         if(profile.instruments!.isNotEmpty) {
           profilesWithInstruments.add(profile);
@@ -78,7 +79,7 @@ class JobsFirestore implements JobsRepository {
 
       profile.genres = await GenreFirestore().retrieveGenres(profile.id);
 
-      if(profile.type == ProfileType.musician) {
+      if(profile.type == ProfileType.instrumentist) {
         profile.instruments = await InstrumentFirestore().retrieveInstruments(profile.id);
         if(profile.instruments!.isNotEmpty) {
           profilesWithInstruments.add(profile);
