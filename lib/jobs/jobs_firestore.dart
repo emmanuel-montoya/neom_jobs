@@ -5,9 +5,7 @@ import 'package:neom_commons/core/data/firestore/constants/app_firestore_collect
 import 'package:neom_commons/core/data/firestore/genre_firestore.dart';
 import 'package:neom_commons/core/data/firestore/instrument_firestore.dart';
 import 'package:neom_commons/core/data/firestore/profile_firestore.dart';
-import 'package:neom_commons/core/data/firestore/user_firestore.dart';
 import 'package:neom_commons/core/domain/model/app_profile.dart';
-import 'package:neom_commons/core/domain/model/app_user.dart';
 import 'package:neom_commons/core/utils/app_utilities.dart';
 import 'package:neom_commons/core/utils/enums/profile_type.dart';
 
@@ -24,12 +22,19 @@ class JobsFirestore implements JobsRepository {
     logger.i("Setting ProfileInstrumentsCollection to improve finding musicians.");
 
     try {
-
-      List<AppUser> users = await UserFirestore().getAll();
+      Map<String, AppProfile> profiles = await ProfileFirestore().retrieveAllProfiles();
       List<AppProfile> musicianProfiles = [];
 
-      for (var user in users) {
-        musicianProfiles.addAll(await getProfilesInstruments(user.id));
+      for (var profile in profiles.values) {
+        if(profile.type == ProfileType.instrumentist) {
+          profile.instruments = await InstrumentFirestore().retrieveInstruments(profile.id);
+          if(profile.instruments!.isNotEmpty) {
+            // profile.genres = await GenreFirestore().retrieveGenres(profile.id);
+            musicianProfiles.add(profile);
+          } else {
+            logger.w("Instruments not found");
+          }
+        }
       }
 
       for (var musicianProfile in musicianProfiles) {
@@ -39,35 +44,39 @@ class JobsFirestore implements JobsRepository {
               .set(musicianProfile.toProfileInstrumentsJSON());
       }
       logger.i("${musicianProfiles.length} musician profiles were added with their instruments.");
+      AppUtilities.showSnackBar("Rutinas de enlace de usuarios", "El enlace de usuarios a sido actualizado satisfactoriamentes.");
     } catch (e) {
     logger.e(e.toString());
+    AppUtilities.showSnackBar("Rutinas de enlace de usuarios", "Hubo un error al actualizar el enlace de usuarios.");
     }
   }
 
 
-  @override
-  Future<List<AppProfile>> getProfilesInstruments(String userId) async {
+  ///DEPRECATED
+  // @override
+  // Future<List<AppProfile>> getProfilesInstruments(String userId) async {
+  //
+  //   List<AppProfile> profiles = await ProfileFirestore().retrieveProfiles(userId);
+  //   List<AppProfile> profilesWithInstruments = [];
+  //
+  //   for (var profile in profiles) {
+  //
+  //     profile.genres = await GenreFirestore().retrieveGenres(profile.id);
+  //
+  //     if(profile.type == ProfileType.instrumentist) {
+  //       profile.instruments = await InstrumentFirestore().retrieveInstruments(profile.id);
+  //       if(profile.instruments!.isNotEmpty) {
+  //         profilesWithInstruments.add(profile);
+  //       } else {
+  //         logger.w("Instruments not found");
+  //       }
+  //     }
+  //
+  //   }
+  //
+  //   return profilesWithInstruments;
+  // }
 
-    List<AppProfile> profiles = await ProfileFirestore().retrieveProfiles(userId);
-    List<AppProfile> profilesWithInstruments = [];
-
-    for (var profile in profiles) {
-
-      profile.genres = await GenreFirestore().retrieveGenres(profile.id);
-
-      if(profile.type == ProfileType.instrumentist) {
-        profile.instruments = await InstrumentFirestore().retrieveInstruments(profile.id);
-        if(profile.instruments!.isNotEmpty) {
-          profilesWithInstruments.add(profile);
-        } else {
-          logger.w("Instruments not found");
-        }
-      }
-
-    }
-
-    return profilesWithInstruments;
-  }
 
   @override
   Future<List<AppProfile>> distributeItemmates(String userId) async {
