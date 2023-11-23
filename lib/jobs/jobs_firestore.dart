@@ -12,14 +12,13 @@ import 'package:neom_commons/core/utils/enums/profile_type.dart';
 import 'jobs_repository.dart';
 
 class JobsFirestore implements JobsRepository {
-
-  var logger = AppUtilities.logger;
+  
   final profileInstrumentsReference = FirebaseFirestore.instance.collection(AppFirestoreCollectionConstants.profileInstruments);
   int documentTimelineCounter = 0;
 
   @override
   Future<void> createProfileInstrumentsCollection() async {
-    logger.i("Setting ProfileInstrumentsCollection to improve finding musicians.");
+    AppUtilities.logger.i("Setting ProfileInstrumentsCollection to improve finding musicians.");
 
     try {
       Map<String, AppProfile> profiles = await ProfileFirestore().retrieveAllProfiles();
@@ -32,22 +31,32 @@ class JobsFirestore implements JobsRepository {
             // profile.genres = await GenreFirestore().retrieveGenres(profile.id);
             musicianProfiles.add(profile);
           } else {
-            logger.w("Instruments not found");
+            AppUtilities.logger.w("Instruments not found");
           }
         }
       }
 
+      WriteBatch batch = FirebaseFirestore.instance.batch();
+
       for (var musicianProfile in musicianProfiles) {
-        logger.i("Adding ${musicianProfile.name} with ${musicianProfile.instruments!.length} instruments");
-          await profileInstrumentsReference
-              .doc(musicianProfile.id)
-              .set(musicianProfile.toProfileInstrumentsJSON());
+        AppUtilities.logger.i("Adding ${musicianProfile.name} with ${musicianProfile.instruments!.length} instruments");
+        DocumentReference docRef = profileInstrumentsReference.doc(musicianProfile.id);
+        batch.set(docRef, musicianProfile.toProfileInstrumentsJSON());
       }
-      logger.i("${musicianProfiles.length} musician profiles were added with their instruments.");
-      AppUtilities.showSnackBar("Rutinas de enlace de usuarios", "El enlace de usuarios a sido actualizado satisfactoriamentes.");
+
+      await batch.commit();
+      AppUtilities.logger.i("${musicianProfiles.length} musician profiles were added with their instruments.");
+
+      AppUtilities.showSnackBar(
+        title: "Rutinas de enlace de usuarios",
+        message: "El enlace de usuarios ha sido actualizado satisfactoriamentes.",
+      );
+
     } catch (e) {
-    logger.e(e.toString());
-    AppUtilities.showSnackBar("Rutinas de enlace de usuarios", "Hubo un error al actualizar el enlace de usuarios.");
+      AppUtilities.logger.e(e.toString());
+      AppUtilities.showSnackBar(
+          title: "Rutinas de enlace de usuarios",
+          message: "Hubo un error al actualizar el enlace de usuarios.");
     }
   }
 
@@ -68,7 +77,7 @@ class JobsFirestore implements JobsRepository {
   //       if(profile.instruments!.isNotEmpty) {
   //         profilesWithInstruments.add(profile);
   //       } else {
-  //         logger.w("Instruments not found");
+  //         AppUtilities.logger.w("Instruments not found");
   //       }
   //     }
   //
@@ -93,7 +102,7 @@ class JobsFirestore implements JobsRepository {
         if(profile.instruments!.isNotEmpty) {
           profilesWithInstruments.add(profile);
         } else {
-          logger.w("Instruments not found");
+          AppUtilities.logger.w("Instruments not found");
         }
       }
 

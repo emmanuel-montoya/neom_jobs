@@ -19,10 +19,17 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.0
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
+dependency_overrides:
+  neom_commons:
+    path: ../neom_commons
+  neom_music_player:
+    path: ../neom_music_player
+  http: 1.1.0
+  uuid: 4.1.0
+  logger: 2.0.2+1
+  google_api_headers: 2.0.3
 
 # The following section is specific to Flutter packages.
 flutter:
