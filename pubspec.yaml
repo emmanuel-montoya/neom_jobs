@@ -1,6 +1,6 @@
 name: neom_jobs
 description: Jobs processes for Cyberneom.
-version: 1.0.2
+version: 1.0.3
 homepage: https://github.com/emmanuel-montoya/neom_jobs
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -26,10 +26,10 @@ dependency_overrides:
     path: ../neom_commons
   neom_music_player:
     path: ../neom_music_player
-  http: 1.1.0
   uuid: 4.1.0
   logger: 2.0.2+1
-  google_api_headers: 2.0.3
+#  http: 1.1.0
+#  google_api_headers: 2.0.3
 
 # The following section is specific to Flutter packages.
 flutter:
