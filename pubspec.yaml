@@ -15,7 +15,6 @@ dependencies:
   neom_commons:
     git:
       url: git@github.com:Cyberneom/neom_commons.git
-      ref: main
 
 dev_dependencies:
   flutter_test:
