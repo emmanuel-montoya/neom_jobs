@@ -29,3 +29,5 @@ dependency_overrides:
 #    path: ../neom_music_player
   uuid: 4.1.0
   logger: 2.0.2+1
+
+flutter:
