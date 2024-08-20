@@ -25,10 +25,11 @@ class JobsFirestore implements JobsRepository {
       List<AppProfile> musicianProfiles = [];
 
       for (var profile in profiles.values) {
-        if(profile.type == ProfileType.instrumentist) {
+        if(profile.type == ProfileType.artist) {
           profile.instruments = await InstrumentFirestore().retrieveInstruments(profile.id);
           if(profile.instruments!.isNotEmpty) {
-            // profile.genres = await GenreFirestore().retrieveGenres(profile.id);
+            //TODO IMPLEMENT WHEN USING THIS
+            //profile.genres = await GenreFirestore().retrieveGenres(profile.id);
             musicianProfiles.add(profile);
           } else {
             AppUtilities.logger.w("Instruments not found");
@@ -97,7 +98,7 @@ class JobsFirestore implements JobsRepository {
 
       profile.genres = await GenreFirestore().retrieveGenres(profile.id);
 
-      if(profile.type == ProfileType.instrumentist) {
+      if(profile.type == ProfileType.artist) {
         profile.instruments = await InstrumentFirestore().retrieveInstruments(profile.id);
         if(profile.instruments!.isNotEmpty) {
           profilesWithInstruments.add(profile);
