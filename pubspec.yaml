@@ -1,6 +1,6 @@
 name: neom_jobs
 description: Jobs processes for Cyberneom.
-version: 1.0.4
+version: 1.1.0
 homepage: https://github.com/emmanuel-montoya/neom_jobs
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
