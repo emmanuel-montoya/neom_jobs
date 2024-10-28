@@ -88,29 +88,30 @@ class JobsFirestore implements JobsRepository {
   // }
 
 
-  @override
-  Future<List<AppProfile>> distributeItemmates(String userId) async {
-
-    List<AppProfile> profiles = await ProfileFirestore().retrieveProfiles(userId);
-    List<AppProfile> profilesWithInstruments = [];
-
-    for (var profile in profiles) {
-
-      profile.genres = await GenreFirestore().retrieveGenres(profile.id);
-
-      if(profile.type == ProfileType.artist) {
-        profile.instruments = await InstrumentFirestore().retrieveInstruments(profile.id);
-        if(profile.instruments!.isNotEmpty) {
-          profilesWithInstruments.add(profile);
-        } else {
-          AppUtilities.logger.w("Instruments not found");
-        }
-      }
-
-    }
-
-    return profilesWithInstruments;
-  }
+  ///DEPRECATED
+  // @override
+  // Future<List<AppProfile>> distributeItemmates(String userId) async {
+  //
+  //   List<AppProfile> profiles = await ProfileFirestore().retrieveProfiles(userId);
+  //   List<AppProfile> profilesWithInstruments = [];
+  //
+  //   for (var profile in profiles) {
+  //
+  //     profile.genres = await GenreFirestore().retrieveGenres(profile.id);
+  //
+  //     if(profile.type == ProfileType.artist) {
+  //       profile.instruments = await InstrumentFirestore().retrieveInstruments(profile.id);
+  //       if(profile.instruments!.isNotEmpty) {
+  //         profilesWithInstruments.add(profile);
+  //       } else {
+  //         AppUtilities.logger.w("Instruments not found");
+  //       }
+  //     }
+  //
+  //   }
+  //
+  //   return profilesWithInstruments;
+  // }
 
 
 }
