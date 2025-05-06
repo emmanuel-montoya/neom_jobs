@@ -1,3 +1,3 @@
-library neom_jobs;
+library;
 
 export 'jobs/jobs_firestore.dart';

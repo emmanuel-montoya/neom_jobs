@@ -1,5 +1,4 @@
 
-import 'package:neom_commons/core/domain/model/app_profile.dart';
 
 abstract class JobsRepository {
 

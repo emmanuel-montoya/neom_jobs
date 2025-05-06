@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:neom_commons/core/data/firestore/constants/app_firestore_collection_constants.dart';
-import 'package:neom_commons/core/data/firestore/genre_firestore.dart';
 import 'package:neom_commons/core/data/firestore/instrument_firestore.dart';
 import 'package:neom_commons/core/data/firestore/profile_firestore.dart';
 import 'package:neom_commons/core/domain/model/app_profile.dart';
@@ -25,7 +24,7 @@ class JobsFirestore implements JobsRepository {
       List<AppProfile> musicianProfiles = [];
 
       for (var profile in profiles.values) {
-        if(profile.type == ProfileType.artist) {
+        if(profile.type == ProfileType.appArtist) {
           profile.instruments = await InstrumentFirestore().retrieveInstruments(profile.id);
           if(profile.instruments!.isNotEmpty) {
             //TODO IMPLEMENT WHEN USING THIS
