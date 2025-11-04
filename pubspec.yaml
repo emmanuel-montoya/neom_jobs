@@ -1,17 +1,20 @@
 name: neom_jobs
-description: Jobs processes for Cyberneom.
-version: 1.2.0
+description: Jobs processes for Open Neom.
+version: 1.4.0
 homepage: https://github.com/emmanuel-montoya/neom_jobs
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
-  flutter: ">=1.17.0"
+  sdk: ">=3.8.0 <4.0.0"
+  flutter: ">=1.19.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
+  neom_core:
+    git:
+      url: git@github.com:Cyberneom/neom_core.git
   neom_commons:
     git:
       url: git@github.com:Cyberneom/neom_commons.git
