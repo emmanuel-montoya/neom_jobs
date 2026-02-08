@@ -1,6 +1,6 @@
 name: neom_jobs
 description: Jobs processes for Open Neom.
-version: 1.4.0
+version: 1.5.0
 homepage: https://github.com/emmanuel-montoya/neom_jobs
 publish_to: 'none'
 

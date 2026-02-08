@@ -1,3 +1,11 @@
+### 1.5.0 - SDK Update & Maintenance Release
+- Updated SDK constraints to `>=3.8.0 <4.0.0`
+- Updated Flutter environment to `>=3.19.0`
+- Updated `flutter_lints` to `^5.0.0`
+- Code maintenance and dependency alignment with ecosystem
+
+---
+
 ### 1.3.0 - Initial Release & Background Process Specialization
 This release marks the initial official release (v1.3.0) of neom_jobs as a new, independent module within the Open Neom ecosystem. This module is introduced to centralize and manage various background processing tasks, enhancing the platform's operational efficiency and data consistency.
 
