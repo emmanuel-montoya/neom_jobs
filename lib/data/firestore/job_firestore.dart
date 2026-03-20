@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:neom_commons/utils/app_utilities.dart';
 import 'package:neom_core/app_config.dart';
+import 'package:neom_core/utils/neom_error_logger.dart';
 import 'package:neom_core/data/firestore/constants/app_firestore_collection_constants.dart';
 import 'package:neom_core/data/firestore/instrument_firestore.dart';
 import 'package:neom_core/data/firestore/profile_firestore.dart';
@@ -52,8 +53,8 @@ class JobFirestore implements JobRepository {
         message: "El enlace de usuarios ha sido actualizado satisfactoriamentes.",
       );
 
-    } catch (e) {
-      AppConfig.logger.e(e.toString());
+    } catch (e, st) {
+      NeomErrorLogger.recordError(e, st, module: 'neom_jobs', operation: 'createProfileInstrumentsCollection');
       AppUtilities.showSnackBar(
           title: "Rutinas de enlace de usuarios",
           message: "Hubo un error al actualizar el enlace de usuarios.");
