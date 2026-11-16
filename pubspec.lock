@@ -130,7 +130,7 @@ packages:
     source: hosted
     version: "1.1.2"
   cloud_firestore:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: cloud_firestore
       sha256: "098f59588473be708ac40e8418a3f7b343a8dba45b1c3fb820e39e94251db921"
@@ -233,6 +233,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
+  cupertino_ui:
+    dependency: transitive
+    description:
+      name: cupertino_ui
+      sha256: "369e39a1c5c030a6212589c3da1809920b1c2cfade7b02aade7695bfa4b88c3a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.6"
   dbus:
     dependency: transitive
     description:
@@ -454,6 +462,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.0"
+  flutter_localizations:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -756,18 +769,18 @@ packages:
     dependency: transitive
     description:
       name: in_app_purchase
-      sha256: ad59b45d998868b8ace0f606e09b348ffd888952a3cf8ff9f7956aaf4844e6e2
+      sha256: d8317ec2ed6fe33199957d67ee67e08a4fd4871ef93b91d7611d8ee560892afc
       url: "https://pub.dev"
     source: hosted
-    version: "3.2.4"
+    version: "3.3.1"
   in_app_purchase_android:
     dependency: transitive
     description:
       name: in_app_purchase_android
-      sha256: "518b48a385dfc1aa278080472969c6cee0c3d41ef8b9511b0071dd015473ecf1"
+      sha256: b76ab601573f8a848e72d015496257235066ba3479bef6300482239f417e0d72
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.0+11"
+    version: "0.5.5"
   in_app_purchase_platform_interface:
     dependency: transitive
     description:
@@ -900,10 +913,10 @@ packages:
     dependency: transitive
     description:
       name: matcher
-      sha256: dc0b7dc7651697ea4ff3e69ef44b0407ea32c487a39fff6a4004fa585e901861
+      sha256: "31bd099b47c10cd1aeb55146a2d46ce0277630ecef3f7dae54ad7873f36696cd"
       url: "https://pub.dev"
     source: hosted
-    version: "0.12.19"
+    version: "0.12.20"
   material_color_utilities:
     dependency: transitive
     description:
@@ -912,14 +925,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.13.0"
+  material_ui:
+    dependency: transitive
+    description:
+      name: material_ui
+      sha256: "474c135fd46b56ff1d35ca982155e8863d28fbc6464d1192acf4ee53a738680e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.11.0"
   meta:
     dependency: transitive
     description:
       name: meta
-      sha256: "1741988757a65eb6b36abe716829688cf01910bbf91c34354ff7ec1c3de2b349"
+      sha256: "307249ce4ff29d58a18e97f6345f539382eb9c9c29ecda628900f31de0443dd9"
       url: "https://pub.dev"
     source: hosted
-    version: "1.18.0"
+    version: "1.19.0"
   mime:
     dependency: transitive
     description:
@@ -934,14 +955,14 @@ packages:
       path: "../../main/neom_commons"
       relative: true
     source: path
-    version: "2.0.3"
+    version: "2.0.4"
   neom_core:
     dependency: "direct main"
     description:
       path: "../../main/neom_core"
       relative: true
     source: path
-    version: "2.1.1"
+    version: "2.1.3"
   neom_google_places:
     dependency: transitive
     description:
@@ -1276,15 +1297,14 @@ packages:
       path: "../../framework/sint"
       relative: true
     source: path
-    version: "1.5.0"
+    version: "2.2.0"
   sint_sentinel:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
-      name: sint_sentinel
-      sha256: "95df03be2d3fe28f2351b89faede14a7c576f45f46493c7197e51185f4b0ff63"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
+      path: "../../framework/sint_sentinel"
+      relative: true
+    source: path
+    version: "1.1.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -1390,10 +1410,10 @@ packages:
     dependency: transitive
     description:
       name: test_api
-      sha256: "949a932224383300f01be9221c39180316445ecb8e7547f70a41a35bf421fb9e"
+      sha256: "2a122cbe059f8b610d3a5415f42e255b6c17b1f21eee1d960f31080237fb4f11"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.11"
+    version: "0.7.12"
   typed_data:
     dependency: transitive
     description:
@@ -1486,10 +1506,10 @@ packages:
     dependency: transitive
     description:
       name: vector_math
-      sha256: d530bd74fea330e6e364cda7a85019c434070188383e1cd8d9777ee586914c5b
+      sha256: fa49e1674cb84acb900141714e6c6e1f9ae099827c24d141430ff6819db4e1bc
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "2.4.4"
   version:
     dependency: transitive
     description:
@@ -1595,5 +1615,5 @@ packages:
     source: hosted
     version: "3.1.3"
 sdks:
-  dart: ">=3.12.0 <4.0.0"
-  flutter: ">=3.44.0"
+  dart: ">=3.13.0 <4.0.0"
+  flutter: ">=3.47.0"
